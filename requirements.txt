@@ -7,3 +7,4 @@ faiss-cpu
 sentence-transformers
 python-dotenv
 requests
+gunicorn==26.0.0
