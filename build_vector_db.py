@@ -1,9 +1,14 @@
+import os
 from pathlib import Path
 
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
+
+from config import GOOGLE_API_KEY
+
+os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 
 
 # ----------------------------------------
@@ -60,8 +65,8 @@ print(f"Created {len(chunks)} chunks.\n")
 
 print("Loading embedding model...")
 
-embedding_model = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
+embedding_model = GoogleGenerativeAIEmbeddings(
+    model="models/gemini-embedding-001"
 )
 
 
